@@ -24,18 +24,18 @@ task :default => 'test'
 
 desc 'Builds the gem'
 task :build do
-  sh "gem build mongomapper_id2.gemspec"
+  sh "gem build treeline.gemspec"
 end
 
 desc 'Builds and installs the gem'
 task :install => :build do
-  sh "gem install mongomapper_id2-#{MongomapperId2::VERSION}"
+  sh "gem install pkg/treeline-#{Treeline::VERSION}.gem"
 end
 
 desc 'Tags version, pushes to remote, and pushes gem'
 task :release => :build do
-  sh "git tag v#{MongomapperId2::VERSION}"
+  sh "git tag v#{Treeline::VERSION}"
   sh "git push origin master"
-  sh "git push origin v#{MongomapperId2::VERSION}"
-  sh "gem push mongomapper_id2-#{MongomapperId2::VERSION}.gem"
+  sh "git push origin v#{Treeline::VERSION}"
+  sh "gem push treeline-#{Treeline::VERSION}.gem"
 end
