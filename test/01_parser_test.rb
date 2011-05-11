@@ -85,9 +85,51 @@ class ParserTest < Test::Unit::TestCase
     assert_equal 2, subsubtree.keys.count
     assert_has_key subsubtree, 'a::b3::d1'
     assert_has_key subsubtree, 'a::b3::d2'
-    
   end
 
+  def test_block_changing_indentation
+    lines = []
+    lines << "0 A"
+    lines << "1 A::B1"
+    lines << "1 A::B2"
+    lines << "2 A::B2::C"
+    lines << "1 A::B3"
+    lines << "2 A::B3::D1"
+    lines << "2 A::B3::D2"
+    
+    parser = Treeline::Parser.new
+    
+    tree = parser.parse(lines) do | item |
+      matched = /^(\d+)\s+(.*)$/.match(item)
+      (" " * matched[1].to_i) + matched[2]
+    end
+    assert_not_nil tree
+    assert_equal 1, tree.keys.count
+    assert_has_key tree, 'A'
+    
+    subtree = tree['A']
+    assert_not_nil subtree
+    assert_equal 3, subtree.keys.count
+    assert_has_key subtree, 'A::B1'
+    assert_has_key subtree, 'A::B2'
+    assert_has_key subtree, 'A::B3'
+    
+    subsubtree = subtree['A::B1']
+    assert_not_nil subsubtree
+    assert_equal 0, subsubtree.keys.count
+    
+    subsubtree = subtree['A::B2']
+    assert_not_nil subsubtree
+    assert_equal 1, subsubtree.keys.count
+    assert_has_key subsubtree, 'A::B2::C'
+    
+    subsubtree = subtree['A::B3']
+    assert_not_nil subsubtree
+    assert_equal 2, subsubtree.keys.count
+    assert_has_key subsubtree, 'A::B3::D1'
+    assert_has_key subsubtree, 'A::B3::D2'
+  end
+  
 protected
 
   def assert_has_key(tree, key, msg=nil)
