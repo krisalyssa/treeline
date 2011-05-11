@@ -58,7 +58,25 @@ None at the moment.
 
 ## Support
 
-[wiki](https://github.com/CraigCottingham/treeline/wiki "wiki")
+Wiki: <https://github.com/CraigCottingham/treeline/wiki>
+
+## Contributing
+
+Treeline has been written the particular need I have *right now* in mind. I'm trying hard not to bulk it up
+with stuff that I or someone else might want someday. That being said, if you have a particular need that
+Treeline doesn't quite satisfy in its current state, I'm happy to consider requests or (better yet)
+contributions.
+
+Here’s the most direct way to get your work merged into the project:
+
+1. Fork the project.
+2. Clone down your fork ( git clone git://github.com/<username>/treeline.git ).
+3. Create a topic branch to contain your change ( git checkout -b my_awesome_feature ).
+4. Hack away, add tests. Not necessarily in that order.
+5. Make sure everything still passes by running `rake test`.
+6. If necessary, rebase your commits into logical chunks, without errors.
+7. Push the branch up ( git push origin my_awesome_feature ).
+8. Send a pull request.
 
 ## License
 
