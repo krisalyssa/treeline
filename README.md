@@ -60,6 +60,13 @@ None at the moment.
 
 Wiki: <https://github.com/CraigCottingham/treeline/wiki>
 
+## To do
+
+Some things I'm considering adding:
+
+* Allow the first line to have leading whitespace, and strip that amount of whitespace from each
+  subsequent line
+  
 ## Contributing
 
 Treeline has been written the particular need I have *right now* in mind. I'm trying hard not to bulk it up
